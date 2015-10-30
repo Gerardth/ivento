@@ -36,7 +36,7 @@ public class CrearEvento extends Activity {
         dialog.show();
     }
     public void agregarIngrediente(View v){
-        EditText txtNombre = (EditText)findViewById(R.id.nombreEvento);
+        EditText txtNombre = (EditText)findViewById(R.id.nombre);
         EditText txtDescripcion = (EditText)findViewById(R.id.descripcionEvento);
         EditText txtHora = (EditText)findViewById(R.id.horaEvento);
         EditText txtDia = (EditText)findViewById(R.id.diaEvento);

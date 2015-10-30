@@ -9,19 +9,19 @@ public class Evento {
     public String descripcion;
     public String hora;
     public String dia;
-    public String Lugar;
+    public String lugar;
     public String tipoEvento;
-    public String coordenadas;
+    public String coordenadas; // temporal mientras implemento mapas
 
 
-    public Evento(int id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String Lugar, String coordenadas){
+    public Evento(int id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, String coordenadas){
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.hora = hora;
         this.dia = dia;
         this.tipoEvento = tipoEvento;
-        this.Lugar = Lugar;
+        this.lugar = lugar;
         this.coordenadas = coordenadas;
     }
 

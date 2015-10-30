@@ -34,4 +34,27 @@ public class Ivento {
         }
         return false;
     }
+
+    public String[] filtrarEventos(String filtro){
+        ArrayList<String> temp = new ArrayList<String>();
+        for(int i = 0; i < eventos.size(); i++){
+            if(filtro.equals(eventos.get(i).tipoEvento)){}
+            temp.add(eventos.get(i).nombre.concat(": ".concat(eventos.get(i).descripcion)));
+        }
+        String[] lista = new String[temp.size()];
+        for(int i = 0; i < temp.size(); i++){
+            lista[i] = temp.get(i);
+        }
+        return lista;
+    }
+
+    public Evento darEvento(String nombre){
+        for(int i = 0; i < eventos.size(); i++){
+            Evento evento = eventos.get(i);
+            if(evento.nombre.concat(": ".concat(eventos.get(i).descripcion)).equals(nombre)){
+                return evento;
+            }
+        }
+        return null;
+    }
 }
