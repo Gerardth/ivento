@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Ivento</string>
+
+    <string name="action_settings">Settings</string>
+    <string-array name="tipoEvento">
+        <item>Cultural</item>
+        <item>Social</item>
+        <item>Deportivo</item>
+        <item>Educativo</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="filtroEventos">
+        <item>Todos</item>
+        <item>Cultural</item>
+        <item>Social</item>
+        <item>Deportivo</item>
+        <item>Educativo</item>
+        <item>Otro</item>
+    </string-array>
+</resources>
