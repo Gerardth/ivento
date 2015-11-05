@@ -21,7 +21,8 @@
         android:id="@+id/crearBtn"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp" />
+        android:layout_marginTop="65dp"
+        android:onClick="crearEvento" />
 
     <Button
         android:layout_width="wrap_content"
@@ -29,7 +30,8 @@
         android:text="Ver lista de eventos"
         android:id="@+id/listaBtn"
         android:layout_below="@+id/crearBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="verLista" />
 
     <Button
         android:layout_width="wrap_content"
@@ -37,7 +39,8 @@
         android:text="mapa de eventos"
         android:id="@+id/mapaBtn"
         android:layout_below="@+id/listaBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="verMapaEventos" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
         android:text="ayuda"
         android:id="@+id/ayudaBtn"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/mapaBtn" />
+        android:layout_below="@+id/mapaBtn"
+        android:onClick="ayuda" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,5 +58,6 @@
         android:id="@+id/AcercaDeBtn"
         android:layout_below="@+id/ayudaBtn"
         android:layout_alignLeft="@+id/listaBtn"
-        android:layout_alignStart="@+id/listaBtn" />
+        android:layout_alignStart="@+id/listaBtn"
+        android:onClick="acercaDe" />
 </RelativeLayout>

@@ -120,18 +120,13 @@
         android:layout_toRightOf="@+id/textView12"
         android:layout_toEndOf="@+id/textView12" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="espacio para el mapa (no implementado aun)"
-        android:id="@+id/textView13"
+    <fragment
+        android:id="@+id/mapInfoEvento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_below="@+id/textView12"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/editarBtn"
-        android:textSize="30dp" />
+        android:layout_above="@+id/editarBtn" />
 
     <Button
         android:layout_width="wrap_content"

@@ -89,18 +89,14 @@
         android:text="Crear evento"
         android:id="@+id/crearBtn"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="crearEvento" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/coord"
-        android:layout_below="@+id/lugarEvento"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/crearBtn"
-        android:layout_alignRight="@+id/diaEvento"
-        android:layout_alignEnd="@+id/diaEvento"
-        android:text="lugar para poner el mapa (temporal)" />
+    <fragment
+        android:id="@+id/mapCrearEvento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_below="@+id/lugarEvento" />
 
 </RelativeLayout>
