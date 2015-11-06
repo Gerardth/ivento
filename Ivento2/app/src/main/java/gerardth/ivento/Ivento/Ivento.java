@@ -35,13 +35,13 @@ public class Ivento {
         return false;
     }
 
-    public String[] filtrarEventos(String filtro){
-        ArrayList<String> temp = new ArrayList<String>();
+    public Evento[] filtrarEventos(String filtro){
+        ArrayList<Evento> temp = new ArrayList<Evento>();
         for(int i = 0; i < eventos.size(); i++){
             if(filtro.equals(eventos.get(i).tipoEvento)){}
-            temp.add(eventos.get(i).nombre.concat(": ".concat(eventos.get(i).descripcion)));
+            temp.add(eventos.get(i));
         }
-        String[] lista = new String[temp.size()];
+        Evento[] lista = new Evento[temp.size()];
         for(int i = 0; i < temp.size(); i++){
             lista[i] = temp.get(i);
         }

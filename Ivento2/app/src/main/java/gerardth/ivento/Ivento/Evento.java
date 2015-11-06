@@ -1,20 +1,25 @@
 package gerardth.ivento.Ivento;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Hogar on 29/10/2015.
  */
 public class Evento {
-    private int id;
+    private final int id;
     public String nombre;
     public String descripcion;
     public String hora;
     public String dia;
     public String lugar;
     public String tipoEvento;
-    public String coordenadas; // temporal mientras implemento mapas
+    public LatLng coordenadas;
 
 
-    public Evento(int id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, String coordenadas){
+    public Evento(int id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, LatLng coordenadas){
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -27,5 +32,9 @@ public class Evento {
 
     public int getId() {
         return id;
+    }
+    public String toString(){
+        return "Descripción: " + descripcion + "\n" + "Hora: " + hora + "\n" + "Día: " + dia + "\n" + "Lugar: " + lugar + "\n" +
+                "Tipo de evento: " + tipoEvento;
     }
 }

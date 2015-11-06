@@ -31,7 +31,8 @@ public class ListaEventos extends Activity {
         mList = (ListView) findViewById(R.id.listaEventos);
         Spinner spinnerFiltro = (Spinner)findViewById(R.id.filtro);
         filtro = spinnerFiltro.getSelectedItem().toString();
-        String[] eventos = Ivento.darInstancia().filtrarEventos(filtro);
+        Evento[] lista = Ivento.darInstancia().filtrarEventos(filtro);
+        String[] eventos = obtenerNombreYdescripcion(lista);
 
         ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, eventos);
         mList.setAdapter(adapter);
@@ -48,5 +49,13 @@ public class ListaEventos extends Activity {
                 startActivity(i);
             }
         });
+    }
+
+    private String[] obtenerNombreYdescripcion(Evento[] lista){
+        String[] list = new String[lista.length];
+        for(int i = 0; i < lista.length; i++){
+            list[i] = lista[i].nombre.concat(": ".concat(lista[i].descripcion));
+        }
+        return list;
     }
 }
