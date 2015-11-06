@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by Hogar on 29/10/2015.
  */
 public class Evento {
-    private final int id;
+    private String id;
     public String nombre;
     public String descripcion;
     public String hora;
@@ -19,7 +19,7 @@ public class Evento {
     public LatLng coordenadas;
 
 
-    public Evento(int id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, LatLng coordenadas){
+    public Evento(String id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, LatLng coordenadas){
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -30,7 +30,7 @@ public class Evento {
         this.coordenadas = coordenadas;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
     public String toString(){

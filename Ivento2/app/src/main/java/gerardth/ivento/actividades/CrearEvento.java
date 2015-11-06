@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
@@ -24,7 +25,7 @@ import gerardth.ivento.R;
 public class CrearEvento extends Activity {
 
     GoogleMap mMap = null;
-    public LatLng coord = null;
+    public LatLng coord = new LatLng(4.601586, -74.06527399999999);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class CrearEvento extends Activity {
         alertDialog.setMessage(message);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
         AlertDialog dialog= alertDialog.create();
@@ -52,8 +55,6 @@ public class CrearEvento extends Activity {
             if (mMap != null) {// Chequeamos si se ha obtenido correctamente una referencia al objeto GoogleMap
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);//Seteamos el tipo de mapa
                 mMap.setMyLocationEnabled(false);//Activamos la capa o layer MyLocation
-
-
             }
         }
     }
@@ -79,24 +80,22 @@ public class CrearEvento extends Activity {
         String Lugar = txtLugar.getText().toString();
 
         if(nombre.equals("") || descripcion.equals("") || hora.equals("") || dia.equals("") || tipoEvento.equals("") ||Lugar.equals("")
-                || coord.equals(null)){
+                /*|| coord.equals(null)*/){
             showDialog("Valores vacíos", "Ingrese todos los valores correctamente.");
         }
         else {
             //obtener imei del telefono
-            int id = getIMEI(this);
+            String id = getIMEI(this);
             Evento evento = new Evento(id, nombre, descripcion, hora, dia, tipoEvento, Lugar, coord);
             Ivento.darInstancia().agregarEvento(evento);
             showDialog("Evento creado", "El evento se ha creado satisfactoriamente.");
         }
     }
 
-    private int getIMEI(Context context){
+    private String getIMEI(Context context){
 
         TelephonyManager mngr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
         String imei = mngr.getDeviceId();
-        int i = Integer.parseInt(imei);
-        return i;
-
+        return imei;
     }
 }

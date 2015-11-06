@@ -33,6 +33,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".actividades.CrearEvento"
+            android:label="Crear Evento" >
+        </activity>
+        <activity
+            android:name=".actividades.InfoEvento"
+            android:label="Informacion del Evento" >
+        </activity>
+        <activity
+            android:name=".actividades.ListaEventos"
+            android:label="Lista de Eventos" >
+        </activity>
+        <activity
+            android:name=".actividades.MapaEventos"
+            android:label="Mapa de Eventos" >
+        </activity>
+        <activity
+            android:name=".actividades.AcercaDe"
+            android:label="Acerca De:" >
+        </activity>
+        <activity
+            android:name=".actividades.Ayuda"
+            android:label="Ayuda" >
+        </activity>
     </application>
 
 </manifest>

@@ -20,8 +20,7 @@ import gerardth.ivento.R;
 public class MapaEventos extends Activity {
 
     GoogleMap mMap = null;
-    public static final LatLng SAGRADA_FAMILIA = new LatLng(41.40347, 2.17432);
-    private String filtro = null;
+    private String filtro = "Todos";
     private Evento[] eventos;
 
     @Override
@@ -29,7 +28,7 @@ public class MapaEventos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa_de_eventos);
 
-        Spinner spinnerFiltro = (Spinner)findViewById(R.id.spinnerTipoEvento);
+        Spinner spinnerFiltro = (Spinner)findViewById(R.id.spinnerFiltro);
         filtro = spinnerFiltro.getSelectedItem().toString();
         eventos = Ivento.darInstancia().filtrarEventos(filtro);
 
