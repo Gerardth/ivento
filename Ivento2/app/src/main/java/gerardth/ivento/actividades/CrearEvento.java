@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -25,12 +27,34 @@ import gerardth.ivento.R;
 public class CrearEvento extends Activity {
 
     GoogleMap mMap = null;
-    public LatLng coord = new LatLng(4.601586, -74.06527399999999);
+    public LatLng coord;
+    private CameraUpdate camara = null;
+    public LatLng centro;
+    Evento eventoEditar;
+    String nombre = null;
+
+    String tipoEvento = null;
+
+    EditText txtNombre;
+    EditText txtDescripcion;
+    EditText txtHora;
+    EditText txtDia;
+    Spinner spinnerTipoEvento;
+    EditText txtLugar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_evento);
+
+        Intent i = getIntent();
+        nombre = i.getStringExtra("editar");
+        eventoEditar = Ivento.darInstancia().darEvento(nombre);
+
+        if(!nombre.equals(null)){
+            editarEvento(eventoEditar);
+        }
+
         crearMapaSiSeNecesita();
     }
 
@@ -54,33 +78,43 @@ public class CrearEvento extends Activity {
             mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapCrearEvento)).getMap();
             if (mMap != null) {// Chequeamos si se ha obtenido correctamente una referencia al objeto GoogleMap
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);//Seteamos el tipo de mapa
-                mMap.setMyLocationEnabled(false);//Activamos la capa o layer MyLocation
+                mMap.setMyLocationEnabled(true);//Activamos la capa o layer MyLocation
+                centro = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                camara = CameraUpdateFactory.newLatLngZoom(centro,18);
+                mMap.animateCamera(camara);
+
+                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        coord = new LatLng(latLng.latitude, latLng.longitude);
+                    }
+                });
             }
         }
     }
 
     public void crearEvento(View v){
-        EditText txtNombre = (EditText)findViewById(R.id.nombre);
-        EditText txtDescripcion = (EditText)findViewById(R.id.descripcionEvento);
-        EditText txtHora = (EditText)findViewById(R.id.horaEvento);
-        EditText txtDia = (EditText)findViewById(R.id.diaEvento);
-        Spinner spinnerTipoEvento = (Spinner)findViewById(R.id.spinnerTipoEvento);
-        EditText txtLugar = (EditText)findViewById(R.id.lugarEvento);
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        txtNombre = (EditText)findViewById(R.id.nombre);
+        txtDescripcion = (EditText)findViewById(R.id.descripcionEvento);
+        txtHora = (EditText)findViewById(R.id.horaEvento);
+        txtDia = (EditText)findViewById(R.id.diaEvento);
+        spinnerTipoEvento = (Spinner)findViewById(R.id.spinnerTipoEvento);
+        txtLugar = (EditText)findViewById(R.id.lugarEvento);
+        /*mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             public void onMapClick(LatLng point) {
                 coord = point;
             }
-        });
+        });*/
 
         String nombre = txtNombre.getText().toString();
         String descripcion = txtDescripcion.getText().toString();
         String hora = txtHora.getText().toString();
         String dia = txtDia.getText().toString();
-        String tipoEvento = spinnerTipoEvento.getSelectedItem().toString();
+        tipoEvento = spinnerTipoEvento.getSelectedItem().toString();
         String Lugar = txtLugar.getText().toString();
 
         if(nombre.equals("") || descripcion.equals("") || hora.equals("") || dia.equals("") || tipoEvento.equals("") ||Lugar.equals("")
-                /*|| coord.equals(null)*/){
+                || coord.equals(null)){
             showDialog("Valores vacíos", "Ingrese todos los valores correctamente.");
         }
         else {
@@ -97,5 +131,15 @@ public class CrearEvento extends Activity {
         TelephonyManager mngr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
         String imei = mngr.getDeviceId();
         return imei;
+    }
+
+    private void editarEvento(Evento evento){
+        txtNombre.setText(evento.nombre);
+        txtDescripcion.setText(evento.descripcion);
+        txtHora.setText(evento.hora);
+        txtDia.setText(evento.dia);
+        tipoEvento = evento.tipoEvento;
+        txtLugar.setText(evento.lugar);
+        coord = evento.coordenadas;
     }
 }

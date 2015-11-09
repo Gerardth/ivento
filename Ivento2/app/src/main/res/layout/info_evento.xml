@@ -126,14 +126,25 @@
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_below="@+id/textView12"
-        android:layout_above="@+id/editarBtn" />
+        android:layout_above="@+id/editarButton" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Editar evento"
-        android:id="@+id/editarBtn"
+        android:id="@+id/editarButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:clickable="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar a mi calendario"
+        android:id="@+id/buttonCalendario"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/tipo"
+        android:layout_toStartOf="@+id/tipo"
+        android:clickable="true" />
 
 </RelativeLayout>

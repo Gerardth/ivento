@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -22,6 +24,8 @@ public class MapaEventos extends Activity {
     GoogleMap mMap = null;
     private String filtro = "Todos";
     private Evento[] eventos;
+    private CameraUpdate camara = null;
+    public LatLng centro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class MapaEventos extends Activity {
         eventos = Ivento.darInstancia().filtrarEventos(filtro);
 
         crearMapaSiSeNecesita();
+
         if(filtro.equals("Todos")){
             crearMarcadores("Cultural", eventos);
             crearMarcadores("Deportivo", eventos);
@@ -49,7 +54,10 @@ public class MapaEventos extends Activity {
             mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
             if (mMap != null) {// Chequeamos si se ha obtenido correctamente una referencia al objeto GoogleMap
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);//Seteamos el tipo de mapa
-                mMap.setMyLocationEnabled(false);//Activamos la capa o layer MyLocation
+                mMap.setMyLocationEnabled(true);//Activamos la capa o layer MyLocation
+                centro = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                camara = CameraUpdateFactory.newLatLngZoom(centro, 17);
+                mMap.animateCamera(camara);
             }
         }
     }
