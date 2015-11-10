@@ -7,10 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +47,7 @@ public class InfoEvento extends Activity {
         setContentView(R.layout.info_evento);
         Button calendarioButton = (Button)findViewById(R.id.buttonCalendario);
         Button editarEvento = (Button)findViewById(R.id.editarButton);
+        Button enviarSms = (Button)findViewById(R.id.smsButton);
 
         Intent i = getIntent();
         String nombre = i.getStringExtra("evento");
@@ -65,6 +70,31 @@ public class InfoEvento extends Activity {
                     Intent i = new Intent(actividad, CrearEvento.class);
                     i.putExtra("editar", evento.nombre);
                 }
+            }
+        });
+
+        enviarSms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
+                final EditText input = new EditText(getApplicationContext());
+
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String phone = input.getText().toString().trim();
+                        Toast.makeText(getApplicationContext(), phone, Toast.LENGTH_SHORT).show();
+                        sendSMSMessage(phone, evento);
+                    }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+                alert.show();
+
             }
         });
 
@@ -136,6 +166,22 @@ public class InfoEvento extends Activity {
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION,evento.lugar);
 
         activity.startActivity(intent);
+    }
+
+    protected void sendSMSMessage(String phone, Evento evento) {
+        Log.i("Send SMS", "");
+        String phoneNo = phone;
+        String message = evento.toString();
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, message, null, null);
+            Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
+        }
+
+        catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
     private void showDialog(String title, String message) {

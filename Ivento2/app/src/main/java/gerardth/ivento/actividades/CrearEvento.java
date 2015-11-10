@@ -31,7 +31,7 @@ public class CrearEvento extends Activity {
     private CameraUpdate camara = null;
     public LatLng centro;
     Evento eventoEditar;
-    String nombre = null;
+    String nombre2 = null;
 
     String tipoEvento = null;
 
@@ -48,10 +48,10 @@ public class CrearEvento extends Activity {
         setContentView(R.layout.crear_evento);
 
         Intent i = getIntent();
-        nombre = i.getStringExtra("editar");
-        eventoEditar = Ivento.darInstancia().darEvento(nombre);
+        nombre2 = i.getStringExtra("editar");
+        eventoEditar = Ivento.darInstancia().darEvento(nombre2);
 
-        if(!nombre.equals(null)){
+        if(!nombre2.equals(null)){
             editarEvento(eventoEditar);
         }
 
@@ -118,8 +118,10 @@ public class CrearEvento extends Activity {
             showDialog("Valores vacíos", "Ingrese todos los valores correctamente.");
         }
         else {
-            //obtener imei del telefono
-            String id = getIMEI(this);
+            if(!nombre2.equals(null)){
+                Ivento.darInstancia().eliminarEvento(eventoEditar);
+            }
+            String id = getIMEI(this); //obtener imei del telefono
             Evento evento = new Evento(id, nombre, descripcion, hora, dia, tipoEvento, Lugar, coord);
             Ivento.darInstancia().agregarEvento(evento);
             showDialog("Evento creado", "El evento se ha creado satisfactoriamente.");

@@ -147,4 +147,14 @@
         android:layout_toStartOf="@+id/tipo"
         android:clickable="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar evento por SMS"
+        android:id="@+id/smsButton"
+        android:layout_alignBottom="@+id/buttonCalendario"
+        android:layout_toRightOf="@+id/editarButton"
+        android:layout_toEndOf="@+id/editarButton"
+        android:clickable="true" />
+
 </RelativeLayout>
