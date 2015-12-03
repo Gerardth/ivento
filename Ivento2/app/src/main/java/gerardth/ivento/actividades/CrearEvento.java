@@ -11,11 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import gerardth.ivento.Ivento.Evento;
 import gerardth.ivento.Ivento.Ivento;
@@ -29,9 +33,9 @@ public class CrearEvento extends Activity {
     GoogleMap mMap = null;
     public LatLng coord;
     private CameraUpdate camara = null;
-    public LatLng centro;
+    public LatLng centro = new LatLng(4.601586, -74.065274);
     Evento eventoEditar;
-    String nombre2 = null;
+    String nombre2 = "nada";
 
     String tipoEvento = null;
 
@@ -47,13 +51,13 @@ public class CrearEvento extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_evento);
 
-        Intent i = getIntent();
+        /*Intent i = getIntent();
         nombre2 = i.getStringExtra("editar");
-        eventoEditar = Ivento.darInstancia().darEvento(nombre2);
-
+        System.out.println("aquiiiiiiiiiiiiiii " + nombre2);
         if(!nombre2.equals(null)){
+            eventoEditar = Ivento.darInstancia().darEvento(nombre2);
             editarEvento(eventoEditar);
-        }
+        }*/
 
         crearMapaSiSeNecesita();
     }
@@ -79,18 +83,30 @@ public class CrearEvento extends Activity {
             if (mMap != null) {// Chequeamos si se ha obtenido correctamente una referencia al objeto GoogleMap
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);//Seteamos el tipo de mapa
                 mMap.setMyLocationEnabled(true);//Activamos la capa o layer MyLocation
-                centro = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII" + mMap.getMyLocation());
                 camara = CameraUpdateFactory.newLatLngZoom(centro,18);
                 mMap.animateCamera(camara);
 
                 mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
+                        mMap.clear();
                         coord = new LatLng(latLng.latitude, latLng.longitude);
+                        centro = coord;
+                        ponerMarcador(centro,"","");
                     }
                 });
             }
         }
+    }
+
+    private void ponerMarcador(LatLng position, String titulo, String info) {
+
+        Marker myMaker = mMap.addMarker(new MarkerOptions()
+                .position(position)
+                .title(titulo)
+                .snippet(info)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
     }
 
     public void crearEvento(View v){
@@ -100,11 +116,6 @@ public class CrearEvento extends Activity {
         txtDia = (EditText)findViewById(R.id.diaEvento);
         spinnerTipoEvento = (Spinner)findViewById(R.id.spinnerTipoEvento);
         txtLugar = (EditText)findViewById(R.id.lugarEvento);
-        /*mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            public void onMapClick(LatLng point) {
-                coord = point;
-            }
-        });*/
 
         String nombre = txtNombre.getText().toString();
         String descripcion = txtDescripcion.getText().toString();
@@ -118,9 +129,9 @@ public class CrearEvento extends Activity {
             showDialog("Valores vacíos", "Ingrese todos los valores correctamente.");
         }
         else {
-            if(!nombre2.equals(null)){
+            /*if(!nombre2.equals(null)){
                 Ivento.darInstancia().eliminarEvento(eventoEditar);
-            }
+            }*/
             String id = getIMEI(this); //obtener imei del telefono
             Evento evento = new Evento(id, nombre, descripcion, hora, dia, tipoEvento, Lugar, coord);
             Ivento.darInstancia().agregarEvento(evento);

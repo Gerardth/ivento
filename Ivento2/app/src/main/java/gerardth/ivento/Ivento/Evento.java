@@ -17,6 +17,7 @@ public class Evento {
     public String lugar;
     public String tipoEvento;
     public LatLng coordenadas;
+    public int personas;
 
 
     public Evento(String id, String nombre, String descripcion, String hora, String dia,  String tipoEvento, String lugar, LatLng coordenadas){
@@ -28,6 +29,7 @@ public class Evento {
         this.tipoEvento = tipoEvento;
         this.lugar = lugar;
         this.coordenadas = coordenadas;
+        this.personas = 0;
     }
 
     public String getId() {

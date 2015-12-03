@@ -56,7 +56,7 @@ public class ListaEventos extends Activity{
         mList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {// para borrar un evento
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Evento evento = (Evento) parent.getItemAtPosition(position);
+                final Evento evento = (Evento) parent.getItemAtPosition(position); // EEROR: NECESITA UN STRING
                 AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                 builder.setCancelable(false);
                 if (getIMEI(getApplicationContext()).equals(evento.getId())) {

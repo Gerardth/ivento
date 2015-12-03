@@ -19,45 +19,65 @@
         android:layout_height="wrap_content"
         android:text="crear evento"
         android:id="@+id/crearBtn"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:onClick="crearEvento" />
+        android:onClick="crearEvento"
+        android:layout_marginBottom="62dp"
+        android:layout_above="@+id/AcercaDeBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/mapaBtn"
+        android:layout_alignEnd="@+id/mapaBtn"
+        android:minHeight="50dp"
+        android:background="@color/accent" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ver lista de eventos"
         android:id="@+id/listaBtn"
-        android:layout_below="@+id/crearBtn"
-        android:layout_centerHorizontal="true"
-        android:onClick="verLista" />
+        android:onClick="verLista"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="100dp"
+        android:background="@color/primary_dark"
+        android:textColor="@color/list_item_bg" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="mapa de eventos"
         android:id="@+id/mapaBtn"
+        android:onClick="verMapaEventos"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/listaBtn"
-        android:layout_centerHorizontal="true"
-        android:onClick="verMapaEventos" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/listaBtn"
+        android:layout_alignEnd="@+id/listaBtn"
+        android:minHeight="100dp"
+        android:textColor="@color/list_item_bg"
+        android:background="@color/primary_dark" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ayuda"
         android:id="@+id/ayudaBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/mapaBtn"
-        android:onClick="ayuda" />
+        android:onClick="ayuda"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Acerca de"
         android:id="@+id/AcercaDeBtn"
-        android:layout_below="@+id/ayudaBtn"
-        android:layout_alignLeft="@+id/listaBtn"
-        android:layout_alignStart="@+id/listaBtn"
-        android:onClick="acercaDe" />
+        android:onClick="acercaDe"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/crearBtn"
+        android:layout_alignEnd="@+id/crearBtn" />
 </RelativeLayout>

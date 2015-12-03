@@ -3,23 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Crea tu evento"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nombre"
         android:hint="Cómo se llama?"
-        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/transparent" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,7 +21,9 @@
         android:layout_above="@+id/diaEvento"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="De que trata?" />
+        android:hint="De que trata?"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -70,11 +65,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinnerTipoEvento"
         android:entries="@array/tipoEvento"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -83,16 +76,23 @@
         android:layout_below="@+id/spinnerTipoEvento"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Donde es?" />
+        android:hint="Donde es?"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear evento"
         android:id="@+id/crearBtn"
+        android:onClick="crearEvento"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="crearEvento" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/primary_dark"
+        android:textColor="@color/list_item_bg" />
 
     <fragment
         android:id="@+id/mapCrearEvento"
